@@ -1,13 +1,13 @@
 package com.example.controller;
 
-import org.springframework.web.bind.annotation.*;
-import com.example.service.CharacterService;
+import com.example.dto.ApiResponse;
 import com.example.dto.CharacterResponse;
-
+import com.example.service.CharacterService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/character")
-public class CharacterController {              
+public class CharacterController {
 
     private final CharacterService characterService;
 
@@ -16,13 +16,9 @@ public class CharacterController {
     }
 
     @GetMapping("/{name}")
-    public CharacterResponse getCharacter(@PathVariable("name") String name) {
-        return characterService.getCharacter(name);
+    public ApiResponse<CharacterResponse> getCharacter(@PathVariable("name") String name) {
+        CharacterResponse response = characterService.getCharacter(name);
+        return ApiResponse.success(response, "查詢成功");
     }
-} 
+}
 
-// 當請求 /character/{name} 時
-// Spring 會呼叫 CharacterController.getCharacter()
-// 這個方法會使用已經注入的 CharacterService
-// 取得角色資料並回傳 CharacterResponse
-// Spring 再把它轉成 JSON 回應給 client。
