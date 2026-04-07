@@ -4,7 +4,7 @@ import com.example.dto.CharacterResponse;
 import com.example.entity.GameCharacter;
 import com.example.exception.CustomException;
 import com.example.exception.ErrorCode;
-import com.example.repository.GameCharacterRepository;
+
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -23,11 +23,14 @@ import java.util.Optional;
 public class CharacterService {
 
     // 角色資料存取元件，負責資料庫 CRUD
-    private final GameCharacterRepository gameCharacterRepository;
+    // private final GameCharacterRepository gameCharacterRepository;
     private final OcidService ocidService;
 
-    public CharacterService(GameCharacterRepository gameCharacterRepository, OcidService ocidService) {
-        this.gameCharacterRepository = gameCharacterRepository;
+    // public CharacterService(GameCharacterRepository gameCharacterRepository, OcidService ocidService) {
+    //     this.gameCharacterRepository = gameCharacterRepository;
+    //     this.ocidService = ocidService;
+    // }
+     public CharacterService( OcidService ocidService) {
         this.ocidService = ocidService;
     }
 
@@ -65,7 +68,7 @@ public class CharacterService {
                 throw new CustomException(ErrorCode.EXTERNAL_API_ERROR);
             }
 
-            saveCharacter(characterResponse, ocid);
+            // saveCharacter(characterResponse, ocid);
             return characterResponse;
 
         } catch (RestClientException ex) {
@@ -77,26 +80,26 @@ public class CharacterService {
     /**
      * 儲存角色資料到資料庫，若已有相同 ocid 資料則更新
      */
-    public void saveCharacter(CharacterResponse response, String ocid) {
-        GameCharacter gameCharacter = gameCharacterRepository.findByOcid(ocid)
-                .orElse(new GameCharacter());
+    // public void saveCharacter(CharacterResponse response, String ocid) {
+    //     GameCharacter gameCharacter = gameCharacterRepository.findByOcid(ocid)
+    //             .orElse(new GameCharacter());
 
-        gameCharacter.setOcid(ocid);
-        gameCharacter.setCharacterName(response.getCharacterName());
-        gameCharacter.setWorldName(response.getWorldName());
-        gameCharacter.setCharacterGender(response.getCharacterGender());
-        gameCharacter.setCharacterClass(response.getCharacterClass());
-        gameCharacter.setCharacterClassLevel(response.getCharacterClassLevel());
-        gameCharacter.setCharacterLevel(response.getCharacterLevel());
-        gameCharacter.setCharacterExp(response.getCharacterExp());
-        gameCharacter.setCharacterExpRate(response.getCharacterExpRate());
-        gameCharacter.setCharacterGuildName(response.getCharacterGuildName());
-        gameCharacter.setCharacterImage(response.getCharacterImage());
-        gameCharacter.setCharacterDateCreate(response.getCharacterDateCreate());
-        gameCharacter.setAccessFlag(response.getAccessFlag());
-        gameCharacter.setLiberationQuestClear(response.getLiberationQuestClear());
+    //     gameCharacter.setOcid(ocid);
+    //     gameCharacter.setCharacterName(response.getCharacterName());
+    //     gameCharacter.setWorldName(response.getWorldName());
+    //     gameCharacter.setCharacterGender(response.getCharacterGender());
+    //     gameCharacter.setCharacterClass(response.getCharacterClass());
+    //     gameCharacter.setCharacterClassLevel(response.getCharacterClassLevel());
+    //     gameCharacter.setCharacterLevel(response.getCharacterLevel());
+    //     gameCharacter.setCharacterExp(response.getCharacterExp());
+    //     gameCharacter.setCharacterExpRate(response.getCharacterExpRate());
+    //     gameCharacter.setCharacterGuildName(response.getCharacterGuildName());
+    //     gameCharacter.setCharacterImage(response.getCharacterImage());
+    //     gameCharacter.setCharacterDateCreate(response.getCharacterDateCreate());
+    //     gameCharacter.setAccessFlag(response.getAccessFlag());
+    //     gameCharacter.setLiberationQuestClear(response.getLiberationQuestClear());
 
-        gameCharacterRepository.save(gameCharacter);
-    }
+    //     gameCharacterRepository.save(gameCharacter);
+    // }
 
 }
