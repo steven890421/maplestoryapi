@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 所有 API
-                        .allowedOrigins("http://localhost:5173") // 前端網址
+                        .allowedOrigins("http://localhost:5173", "https://maplestory-frontend.onrender.com/") // 前端網址
                         .allowedMethods("*"); // GET POST 等全部允許
             }
         };
