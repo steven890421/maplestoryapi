@@ -43,7 +43,6 @@ public class CharacterResponse {
     @JsonProperty("liberation_quest_clear")
     private String liberationQuestClear;
 
-    
     // ✅ getters（必要）
     public String getCharacterName() { return characterName; }
     public String getWorldName() { return worldName; }

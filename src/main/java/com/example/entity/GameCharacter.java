@@ -19,24 +19,30 @@ public class GameCharacter {
 
     private String worldName;
 
+    private String characterGender;
+
     private String characterClass;
 
-    private Integer characterLevel;
+    private String characterClassLevel;
 
-    private String guildName;
+    private int characterLevel;
 
-    private LocalDateTime lastUpdated;
+    private long characterExp;
+
+    private String characterExpRate;
+
+    private String characterGuildName;
 
     @Column(length = 1000)
     private String characterImage;
 
-    public String getCharacterImage() {
-        return characterImage;
-    }
+    private String characterDateCreate;
 
-    public void setCharacterImage(String characterImage) {
-        this.characterImage = characterImage;
-    }
+    private String accessFlag;
+
+    private String liberationQuestClear;
+
+    private LocalDateTime lastUpdated;
 
     public GameCharacter() {
     }
@@ -69,6 +75,14 @@ public class GameCharacter {
         this.worldName = worldName;
     }
 
+    public String getCharacterGender() {
+        return characterGender;
+    }
+
+    public void setCharacterGender(String characterGender) {
+        this.characterGender = characterGender;
+    }
+
     public String getCharacterClass() {
         return characterClass;
     }
@@ -77,20 +91,76 @@ public class GameCharacter {
         this.characterClass = characterClass;
     }
 
-    public Integer getCharacterLevel() {
+    public String getCharacterClassLevel() {
+        return characterClassLevel;
+    }
+
+    public void setCharacterClassLevel(String characterClassLevel) {
+        this.characterClassLevel = characterClassLevel;
+    }
+
+    public int getCharacterLevel() {
         return characterLevel;
     }
 
-    public void setCharacterLevel(Integer characterLevel) {
+    public void setCharacterLevel(int characterLevel) {
         this.characterLevel = characterLevel;
     }
 
-    public String getGuildName() {
-        return guildName;
+    public long getCharacterExp() {
+        return characterExp;
     }
 
-    public void setGuildName(String guildName) {
-        this.guildName = guildName;
+    public void setCharacterExp(long characterExp) {
+        this.characterExp = characterExp;
+    }
+
+    public String getCharacterExpRate() {
+        return characterExpRate;
+    }
+
+    public void setCharacterExpRate(String characterExpRate) {
+        this.characterExpRate = characterExpRate;
+    }
+
+    public String getCharacterGuildName() {
+        return characterGuildName;
+    }
+
+    public void setCharacterGuildName(String characterGuildName) {
+        this.characterGuildName = characterGuildName;
+    }
+
+    public String getCharacterImage() {
+        return characterImage;
+    }
+
+    public void setCharacterImage(String characterImage) {
+        this.characterImage = characterImage;
+    }
+
+    public String getCharacterDateCreate() {
+        return characterDateCreate;
+    }
+
+    public void setCharacterDateCreate(String characterDateCreate) {
+        this.characterDateCreate = characterDateCreate;
+    }
+
+    public String getAccessFlag() {
+        return accessFlag;
+    }
+
+    public void setAccessFlag(String accessFlag) {
+        this.accessFlag = accessFlag;
+    }
+
+    public String getLiberationQuestClear() {
+        return liberationQuestClear;
+    }
+
+    public void setLiberationQuestClear(String liberationQuestClear) {
+        this.liberationQuestClear = liberationQuestClear;
     }
 
     public LocalDateTime getLastUpdated() {
