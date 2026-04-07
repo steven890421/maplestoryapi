@@ -6,7 +6,6 @@ import com.example.exception.ErrorCode;
 
 public class ApiResponse<T> {
 
-   
     private boolean success;
     private T data;
     private String message;
@@ -25,38 +24,13 @@ public class ApiResponse<T> {
         this.timestamp = timestamp;
     }
 
-    
-
-    public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>(
-                true,
-                data,
-                "success",
-                200,
-                LocalDateTime.now()
-        );
-    }
-
-
-
-    public static <T> ApiResponse<T> error(String message, int status) {
-        return new ApiResponse<>(
-                false,
-                null,
-                message,
-                status,
-                LocalDateTime.now()
-        );
-    }
-
-    public static <T> ApiResponse<T> success(T data, String message) {
-        ApiResponse<T> res = new ApiResponse<>();
-        res.success = true;
-        res.data = data;
-        res.message = message;
-        res.status = 200;
-        res.timestamp = LocalDateTime.now();
-        return res;
+    public ApiResponse(boolean success, T data, String message, int status, String errorCode, LocalDateTime timestamp) {
+        this.success = success;
+        this.data = data;
+        this.message = message;
+        this.status = status;
+        this.errorCode = errorCode;
+        this.timestamp = timestamp;
     }
 
     public static <T> ApiResponse<T> error(ErrorCode errorCode) {
@@ -70,6 +44,15 @@ public class ApiResponse<T> {
     }
 
     
+    public static <T> ApiResponse<T> success(T data, String message) {
+        ApiResponse<T> res = new ApiResponse<>();
+        res.success = true;
+        res.data = data;
+        res.message = message;
+        res.status = 200;
+        res.timestamp = LocalDateTime.now();
+        return res;
+    }
 
     public boolean isSuccess() {
         return success;
@@ -111,6 +94,12 @@ public class ApiResponse<T> {
         this.timestamp = timestamp;
     }
 
-    
-}
+    public String getErrorCode() {
+        return errorCode;
+    }
 
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+}

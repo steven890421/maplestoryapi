@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/character")
 public class CharacterController {
 
-    
     private final CharacterService characterService;
     private final CharacterProfileService characterProfileService;
+
     public CharacterController(CharacterService characterService, CharacterProfileService characterProfileService) {
         this.characterService = characterService;
         this.characterProfileService = characterProfileService;
     }
-
-    
 
     @GetMapping("/{name}")
     public ApiResponse<CharacterResponse> getCharacter(@PathVariable("name") String name) {
@@ -27,10 +25,9 @@ public class CharacterController {
         return ApiResponse.success(response, "查詢成功");
     }
 
-     @GetMapping("/{name}/profile")
-    public CharacterProfileResponse getProfile(@PathVariable String name) {
-       CharacterProfileResponse profile = characterProfileService.getCharacterProfile(name);
-       return profile;
+    @GetMapping("/{name}/profile")
+    public ApiResponse<CharacterProfileResponse> getProfile(@PathVariable String name) {
+        CharacterProfileResponse profile = characterProfileService.getCharacterProfile(name);
+        return ApiResponse.success(profile, "查詢成功");
     }
 }
-

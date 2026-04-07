@@ -15,12 +15,13 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(errorCode.getStatus())
-                .body(ApiResponse.error(errorCode.getMessage(), errorCode.getStatus().value()));
+                .body(ApiResponse.error(errorCode));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {
+        System.out.println("發生未預期錯誤: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error("系統發生未預期錯誤", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+                .body(ApiResponse.error(ErrorCode.INTERNAL_SERVER_ERROR));
     }
 }

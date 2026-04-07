@@ -5,6 +5,8 @@ import com.example.entity.GameCharacter;
 import com.example.exception.CustomException;
 import com.example.exception.ErrorCode;
 import com.example.repository.GameCharacterRepository;
+
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -59,6 +61,7 @@ public class CharacterService {
             CharacterResponse characterResponse = response.getBody();
 
             if (characterResponse == null) {
+                System.out.println("API 回傳的角色資料為 null，可能是因為角色不存在或 API 發生錯誤");
                 throw new CustomException(ErrorCode.EXTERNAL_API_ERROR);
             }
 
@@ -66,6 +69,7 @@ public class CharacterService {
             return characterResponse;
 
         } catch (RestClientException ex) {
+            System.out.println("呼叫 Nexon API 時發生錯誤" + ex.getMessage());
             throw new CustomException(ErrorCode.EXTERNAL_API_ERROR);
         }
     }
